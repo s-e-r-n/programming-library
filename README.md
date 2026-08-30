@@ -2,7 +2,7 @@
 
 Six programming and software-design readings, paired with one existing illustration each.
 
-Open `index.html` to browse the collection through a simple cover grid. The generated previews in `covers/` come directly from the documents.
+Open `index.html` to browse the collection through a simple cover grid. The generated previews in `covers/` come directly from the documents. Display titles can be renamed with the pencil button; custom names are stored locally in the browser.
 
 | # | Document | Illustration | Document source | Image source |
 |---|---|---|---|---|

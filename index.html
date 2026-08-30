@@ -5,41 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bibliothèque de programmation</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
   </head>
   <body>
     <main>
       <h1>Tous</h1>
 
       <section class="library" aria-label="Documents">
-        <a class="document" href="documents/01-ousterhout-1998-scripting-higher-level-programming.pdf" target="_blank">
-          <span class="cover"><img src="covers/01-ousterhout-scripting.png" alt="Aperçu du document Scripting: Higher-Level Programming for the 21st Century"></span>
-          <span class="title">Scripting: Higher-Level Programming for the 21st Century</span>
-        </a>
+        <article class="document" data-document-id="ousterhout-scripting">
+          <a class="document-link" href="documents/01-ousterhout-1998-scripting-higher-level-programming.pdf" target="_blank">
+            <span class="cover"><img src="covers/01-ousterhout-scripting.png" alt="Aperçu du document Scripting: Higher-Level Programming for the 21st Century"></span>
+            <span class="title">Scripting: Higher-Level Programming for the 21st Century</span>
+          </a>
+          <button class="rename-button" type="button" aria-label="Renommer Scripting: Higher-Level Programming for the 21st Century">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+            </svg>
+          </button>
+        </article>
 
-        <a class="document" href="documents/02-pike-1989-notes-on-programming-in-c.html" target="_blank">
-          <span class="cover"><img src="covers/02-pike-notes-programming-c.png" alt="Aperçu du document Notes on Programming in C"></span>
-          <span class="title">Notes on Programming in C</span>
-        </a>
+        <article class="document" data-document-id="pike-programming-c">
+          <a class="document-link" href="documents/02-pike-1989-notes-on-programming-in-c.html" target="_blank">
+            <span class="cover"><img src="covers/02-pike-notes-programming-c.png" alt="Aperçu du document Notes on Programming in C"></span>
+            <span class="title">Notes on Programming in C</span>
+          </a>
+          <button class="rename-button" type="button" aria-label="Renommer Notes on Programming in C">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg>
+          </button>
+        </article>
 
-        <a class="document" href="documents/03-parnas-1972-criteria-decomposing-systems-into-modules.pdf" target="_blank">
-          <span class="cover"><img src="covers/03-parnas-criteria-modules.png" alt="Aperçu du document On the Criteria to Be Used in Decomposing Systems into Modules"></span>
-          <span class="title">On the Criteria to Be Used in Decomposing Systems into Modules</span>
-        </a>
+        <article class="document" data-document-id="parnas-criteria-modules">
+          <a class="document-link" href="documents/03-parnas-1972-criteria-decomposing-systems-into-modules.pdf" target="_blank">
+            <span class="cover"><img src="covers/03-parnas-criteria-modules.png" alt="Aperçu du document On the Criteria to Be Used in Decomposing Systems into Modules"></span>
+            <span class="title">On the Criteria to Be Used in Decomposing Systems into Modules</span>
+          </a>
+          <button class="rename-button" type="button" aria-label="Renommer On the Criteria to Be Used in Decomposing Systems into Modules">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg>
+          </button>
+        </article>
 
-        <a class="document" href="documents/04-ousterhout-2018-modules-should-be-deep.html" target="_blank">
-          <span class="cover"><img src="covers/04-ousterhout-modules-should-be-deep.png" alt="Aperçu du document Modules Should Be Deep"></span>
-          <span class="title">Modules Should Be Deep</span>
-        </a>
+        <article class="document" data-document-id="ousterhout-deep-modules">
+          <a class="document-link" href="documents/04-ousterhout-2018-modules-should-be-deep.html" target="_blank">
+            <span class="cover"><img src="covers/04-ousterhout-modules-should-be-deep.png" alt="Aperçu du document Modules Should Be Deep"></span>
+            <span class="title">Modules Should Be Deep</span>
+          </a>
+          <button class="rename-button" type="button" aria-label="Renommer Modules Should Be Deep">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg>
+          </button>
+        </article>
 
-        <a class="document" href="documents/05-carmack-2007-on-inlined-code.html" target="_blank">
-          <span class="cover"><img src="covers/05-carmack-on-inlined-code.png" alt="Aperçu du document On Inlined Code"></span>
-          <span class="title">On Inlined Code</span>
-        </a>
+        <article class="document" data-document-id="carmack-inlined-code">
+          <a class="document-link" href="documents/05-carmack-2007-on-inlined-code.html" target="_blank">
+            <span class="cover"><img src="covers/05-carmack-on-inlined-code.png" alt="Aperçu du document On Inlined Code"></span>
+            <span class="title">On Inlined Code</span>
+          </a>
+          <button class="rename-button" type="button" aria-label="Renommer On Inlined Code">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg>
+          </button>
+        </article>
 
-        <a class="document" href="documents/06-torvalds-linked-list-good-taste.md" target="_blank">
-          <span class="cover"><img src="covers/06-torvalds-linked-list-good-taste.png" alt="Aperçu du document Linked Lists, Pointer Tricks and Good Taste"></span>
-          <span class="title">Linked Lists, Pointer Tricks and Good Taste</span>
-        </a>
+        <article class="document" data-document-id="torvalds-good-taste">
+          <a class="document-link" href="documents/06-torvalds-linked-list-good-taste.md" target="_blank">
+            <span class="cover"><img src="covers/06-torvalds-linked-list-good-taste.png" alt="Aperçu du document Linked Lists, Pointer Tricks and Good Taste"></span>
+            <span class="title">Linked Lists, Pointer Tricks and Good Taste</span>
+          </a>
+          <button class="rename-button" type="button" aria-label="Renommer Linked Lists, Pointer Tricks and Good Taste">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/></svg>
+          </button>
+        </article>
       </section>
     </main>
   </body>

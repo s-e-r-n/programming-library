@@ -36,8 +36,13 @@ h1 {
 }
 
 .document {
+  position: relative;
   display: block;
   max-width: 260px;
+}
+
+.document-link {
+  display: block;
   color: inherit;
   text-decoration: none;
 }
@@ -49,17 +54,9 @@ h1 {
   aspect-ratio: 3 / 4;
   overflow: hidden;
   background: #fff;
-  border: 1px solid rgb(255 255 255 / 20%);
+  border: 1px solid rgb(255 255 255 / 10%);
   box-shadow: 0 16px 36px rgb(0 0 0 / 35%);
   transition: transform 150ms ease, box-shadow 150ms ease;
-}
-
-.cover::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, transparent 68%, rgb(0 0 0 / 22%));
-  content: "";
-  pointer-events: none;
 }
 
 .cover img {
@@ -73,20 +70,54 @@ h1 {
 .title {
   display: block;
   margin-top: 14px;
+  padding-right: 32px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.35;
 }
 
-.document:hover .cover,
-.document:focus-visible .cover {
+.title[contenteditable="true"] {
+  padding: 4px 32px 4px 6px;
+  margin: 10px -6px -4px;
+  background: rgb(255 255 255 / 8%);
+  border-radius: 4px;
+  outline: 1px solid rgb(255 255 255 / 35%);
+}
+
+.rename-button {
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+  color: rgb(255 255 255 / 55%);
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.rename-button:hover,
+.rename-button:focus-visible {
+  color: #fff;
+  background: rgb(255 255 255 / 10%);
+}
+
+.document-link:hover .cover,
+.document-link:focus-visible .cover {
   transform: translateY(-4px);
   box-shadow: 0 20px 42px rgb(0 0 0 / 48%);
 }
 
-.document:focus-visible {
+.document-link:focus-visible,
+.rename-button:focus-visible {
   outline: 2px solid #fff;
-  outline-offset: 8px;
+  outline-offset: 4px;
 }
 
 @media (max-width: 640px) {
