@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Marco Tulio Valente" />
+  <title>Modules Should Be Deep! – Software Engineering: A Modern Approach</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    q { quotes: "“" "”" "‘" "’"; }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://softengbook.org/figs/favicon.ico">
+
+  <link rel="stylesheet" href="https://softengbook.org/helper/pico.min.css"/>
+
+  <style>
+    .container {
+        max-width: 900px; /* Set your desired maximum width here */
+        margin: 0 auto; /* Center the container */
+        padding: 0 20px; /* Optional: Add some horizontal padding */
+    }
+    .anchor-link {
+        opacity: 0.5;
+        font-size: 60%;
+    }
+  </style>
+
+  <style>
+    code {
+      word-spacing: 0; /* Ensures no extra space around words */
+      padding: 0; /* Adjusts any unwanted padding */
+      margin: 0; /* Removes any unnecessary margin */
+    }  
+  </style>
+
+  <script>
+      document.documentElement.setAttribute('data-theme', 'light');
+  </script>
+
+</head>
+<body>
+<header class="container">
+
+<div style="margin-top: 30px;">
+<a href="https://softengbook.org/">   
+<img src="https://softengbook.org/figs/capa/capa-front-page-new.jpg" alt="Book cover">
+</a>
+</div>
+
+<div style="margin-top: 30px;">
+<p> 
+<a href="https://softengbook.org">Web Version</a> |
+<a href="#" id="dark-mode-toggle">Dark Mode</a> |
+<a href="https://leanpub.com/softengbook">Buy on Leanpub</a>
+</p>
+</div>
+
+</header>
+
+<main class="container">
+<header id="title-block-header">
+<h1 class="title">Software Engineering: A Modern Approach</h1>
+<p class="author">Marco Tulio Valente</p>
+</header>
+<p>You can also listen to an AI-generated summary of this article.</p>
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/episode/3eFV4FYSw4RQzWWhU6qTyl?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy">
+</iframe>
+<h1 data-number="1" id="modules-should-be-deep"><span
+class="header-section-number">1</span> Modules Should Be Deep</h1>
+<h2 data-number="1.1" id="introduction"><span
+class="header-section-number">1.1</span> Introduction</h2>
+<p>John Ousterhout is a professor at Stanford University and the creator
+of the Tcl/Tk scripting language. In 2018, he published a <a
+href="https://web.stanford.edu/~ouster/cgi-bin/aposd.php">book</a> on
+software design principles.</p>
+<p>One of his main recommendations—and probably one of the most original
+compared to other literature on software design—is the following:
+<strong>the modules of a system should be deep</strong>.</p>
+<p>Before explaining the concept of <q>deep,</q> let’s first define a
+module. In software design, a module is any code element that has both
+an implementation and an interface.</p>
+<blockquote>
+<p>Modules = Interface + Implementation</p>
+</blockquote>
+<p>Modules can vary in size and include functions, classes, and
+packages. For functions, the interface is defined by their
+signature.</p>
+<h2 data-number="1.2" id="deep-modules"><span
+class="header-section-number">1.2</span> Deep Modules</h2>
+<p>Returning to Ousterhout’s advice, a module is considered deep when
+its implementation is significantly more complex than its interface. In
+other words, modules should offer their clients a simple interface while
+providing a complex implementation behind it.</p>
+<p>On the other hand, a shallow module has an interface that is nearly
+as complex as its implementation. To better understand this concept,
+consider the following illustrations:</p>
+<figure>
+<img src="./figs/deep-modules.svg" style="width:75.0%"
+alt="Deep modules vs shallow modules" />
+<figcaption aria-hidden="true">Deep modules vs shallow
+modules</figcaption>
+</figure>
+<p>As an example of a deep module, the author mentions the Unix file
+system, whose interface consists of only five functions:</p>
+<pre><code>int open(const char* path, int flags, mode_t permissions);
+ssize_t read(int fd, void* buffer, size_t count);
+ssize_t write(int fd, const void* buffer, size_t count);
+off_t lseek(int fd, off_t offset, int referencePosition);
+int close(int fd);</code></pre>
+<p>The implementation of a file system in any operating system is quite
+complex, as it involves dealing with disk devices, maintaining data
+structures to store files, managing permissions, supporting concurrent
+access to files, handling caches, and other intricate tasks. However, in
+the Unix case, this complexity is hidden behind a very simple interface
+(the five functions shown above). Importantly, Ousterhout notes that the
+design of Unix file systems has radically evolved over the years, but
+this evolution has been transparent to users because the signatures of
+the five functions have remained unchanged.</p>
+<p>The author mentions a second example of a deep module: garbage
+collectors. Despite their complexity, garbage collection algorithms are
+encapsulated in modules that have virtually no visible interface to most
+programmers.</p>
+<p>In my lectures, I often use an alternative metaphor proposed in a <a
+href="https://en.wikipedia.org/wiki/Object-Oriented_Software_Construction">book</a>
+by Prof. Bertrand Meyer. He suggests that modules should be like
+icebergs, with a small tip (the interface) and a large base (the
+implementation), which is submerged and invisible to external observers.
+The figure below, used in Meyer’s book, illustrates this concept:</p>
+<figure>
+<img src="./figs/deep-modules-iceberg.png" style="width:45.0%"
+alt="Modules should be like icebergs" />
+<figcaption aria-hidden="true">Modules should be like
+icebergs</figcaption>
+</figure>
+<h2 data-number="1.3" id="shallow-modules"><span
+class="header-section-number">1.3</span> Shallow Modules</h2>
+<p>On the other hand, a shallow module has an interface that is
+relatively complex compared to its implementation. As an extreme
+example, the author presents the following function:</p>
+<pre><code>void addNullValueForAttribute(String attribute) { // interface
+  data.put(attribute, null);    // implementation
+}</code></pre>
+<p>In this case, it is simpler and easier to directly call:</p>
+<pre><code>data.put(attribute, null);</code></pre>
+<p>than to implement a function solely for this purpose. The function
+<code>addNullValueForAttribute</code> adds complexity to the system
+without providing significant benefits.</p>
+<h2 class="unnumbered" id="exercises">Exercises</h2>
+<p>1. Give two examples of deep modules. To facilitate your answer,
+consider packages or libraries in your preferred programming
+language.</p>
+<p>2. Consider the following statement: deep modules necessarily imply
+large functions or classes with many lines of code. Is this statement
+true or false? Justify and discuss your answer.</p>
+<p>3. Suppose the following method of the <code>String</code> class in
+Java:</p>
+<pre><code>public boolean isEmpty() {
+  return value.length == 0;
+}</code></pre>
+<p>Is this method shallow? Justify and discuss.</p>
+<p>Suggestion: To answer the question think about the code that calls
+<code>isEmpty()</code>. For instance, would you prefer the following
+code</p>
+<pre><code>if (myString.isEmpty()) {
+    ...
+}</code></pre>
+<p>over code like this:</p>
+<pre><code>if (myString.value.length() == 0) {
+    ...
+}</code></pre>
+<p>4. Consider the following statement: every shallow module is small,
+but not every small module is shallow. Is this statement true or false?
+Justify and discuss. (Note: A small module is one that has a few lines
+of code.)</p>
+<p>5. Consider the following statement taken from Martin Fowler’s
+Refactoring book (page 90):</p>
+<blockquote>
+<p>Small methods really work only when you have good names, so you need
+to pay attention to naming. People sometimes ask me what length I look
+for in a method. To me length is not the issue. The key is the semantic
+distance between the method name and the method body.</p>
+</blockquote>
+<p>Explain the concept of <em>semantic distance between the method name
+and the method body</em>, as mentioned in this quotation.</p>
+<hr />
+<p><b>Check out the other <a
+href="https://softengbook.org/index.html#articles">articles</a> on our
+site.</b></p>
+<hr />
+</main>
+
+<footer class="container">
+All rights reserved. Version for personal use only. To report errors or typos use this 
+<a href="https://forms.gle/urrjFgGYgmKuJrfb9">form</a>.
+</footer>
+
+<script>
+  document.getElementById('dark-mode-toggle').addEventListener('click', function(event) {
+    event.preventDefault();
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    this.textContent = newTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+  });
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3347207edfeff00',t:'MTc4ODA5OTcyMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
